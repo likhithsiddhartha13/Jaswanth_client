@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | GetFitWithJaswanth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-neutral-950 text-white font-['Inter']">
+
+    <!-- Header -->
+    <header class="py-10 border-b border-neutral-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <a href="index.html" class="text-xl md:text-2xl font-bold tracking-tighter text-yellow-400">GETFITWITHJASWANTH</a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <!-- Left: Checkout Form -->
+            <div class="space-y-12">
+                <!-- Section A: Contact Info -->
+                <section>
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="w-8 h-8 rounded-full bg-yellow-400 text-black flex items-center justify-center font-bold">1</span>
+                        <h2 class="text-2xl font-bold">Contact Information</h2>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-neutral-400">Full Name</label>
+                            <input type="text" id="full-name" placeholder="John Doe" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-neutral-400">Email Address</label>
+                            <input type="email" id="email" placeholder="john@example.com" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors">
+                        </div>
+                        <div class="sm:col-span-2 space-y-2">
+                            <label class="text-sm font-medium text-neutral-400">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="+91 98765 43210" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section B: Shipping Address (Conditional) -->
+                <section id="shipping-section">
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="w-8 h-8 rounded-full bg-yellow-400 text-black flex items-center justify-center font-bold">2</span>
+                        <h2 class="text-2xl font-bold">Shipping Address</h2>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="sm:col-span-2 space-y-2">
+                            <label class="text-sm font-medium text-neutral-400">Address Line 1</label>
+                            <input type="text" placeholder="House No, Street Name" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors">
+                        </div>
+                        <div class="sm:col-span-2 space-y-2">
+                            <label class="text-sm font-medium text-neutral-400">Address Line 2 (Optional)</label>
+                            <input type="text" placeholder="Apartment, Landmark" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-neutral-400">City</label>
+                            <input type="text" placeholder="Mumbai" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-neutral-400">State</label>
+                            <input type="text" placeholder="Maharashtra" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-neutral-400">PIN Code</label>
+                            <input type="text" placeholder="400001" class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section C: Payment -->
+                <section>
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="w-8 h-8 rounded-full bg-yellow-400 text-black flex items-center justify-center font-bold">3</span>
+                        <h2 class="text-2xl font-bold">Payment Method</h2>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-xl border border-yellow-400 bg-yellow-400/5 flex items-center gap-4">
+                            <input type="radio" checked name="payment" class="w-4 h-4 accent-yellow-400">
+                            <div>
+                                <p class="font-bold">Razorpay / Stripe</p>
+                                <p class="text-xs text-neutral-500 italic">Pay with Card, UPI, or Netbanking</p>
+                            </div>
+                        </div>
+                        <button onclick="placeOrder()" class="btn-primary w-full py-4 text-lg">Place Order</button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right: Order Summary -->
+            <div>
+                <div class="bg-neutral-900 rounded-2xl p-8 sticky top-32 border border-neutral-800">
+                    <h3 class="text-xl font-bold mb-8 flex items-center gap-2">
+                        <i data-lucide="shopping-bag" class="w-5 h-5 text-yellow-400"></i>
+                        Order Summary
+                    </h3>
+                    <div id="checkout-items" class="space-y-6 mb-8 max-h-[400px] overflow-y-auto pr-2">
+                        <!-- Items injected via script -->
+                    </div>
+                    <div class="space-y-4 pt-8 border-t border-neutral-800">
+                        <div class="flex justify-between text-neutral-400">
+                            <span>Subtotal</span>
+                            <span id="summary-subtotal">₹0</span>
+                        </div>
+                        <div class="flex justify-between text-neutral-400">
+                            <span>Shipping</span>
+                            <span id="summary-shipping">₹0</span>
+                        </div>
+                        <div class="flex justify-between text-xl font-bold text-white pt-4">
+                            <span>Total</span>
+                            <span id="summary-total" class="text-yellow-400">₹0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkoutList = document.getElementById('checkout-items');
+            const summarySubtotal = document.getElementById('summary-subtotal');
+            const summaryShipping = document.getElementById('summary-shipping');
+            const summaryTotal = document.getElementById('summary-total');
+            const shippingSection = document.getElementById('shipping-section');
+
+            if (cart.length === 0) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            let total = 0;
+            let hasPhysicalItems = false;
+
+            checkoutList.innerHTML = '';
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                if (item.name.includes('Kit') || item.name.includes('Shirt') || item.name.includes('Pack')) {
+                    hasPhysicalItems = true;
+                }
+
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'flex gap-4';
+                itemDiv.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded bg-neutral-800">
+                    <div class="flex-1">
+                        <div class="flex justify-between">
+                            <h4 class="font-medium text-sm">${item.name}</h4>
+                            <span class="font-bold text-sm">₹${(item.price * item.quantity).toLocaleString()}</span>
+                        </div>
+                        <p class="text-xs text-neutral-500 mt-1">Qty: ${item.quantity}</p>
+                    </div>
+                `;
+                checkoutList.appendChild(itemDiv);
+            });
+
+            const shippingCost = hasPhysicalItems ? 99 : 0;
+            if (!hasPhysicalItems && shippingSection) {
+                shippingSection.style.display = 'none';
+            }
+
+            summarySubtotal.textContent = `₹${total.toLocaleString()}`;
+            summaryShipping.textContent = shippingCost === 0 ? 'FREE' : `₹${shippingCost}`;
+            summaryTotal.textContent = `₹${(total + shippingCost).toLocaleString()}`;
+
+            lucide.createIcons();
+        });
+
+        function placeOrder() {
+            const name = document.getElementById('full-name').value;
+            if (!name) {
+                alert('Please enter your full name');
+                return;
+            }
+            
+            // Store order data for confirmation page
+            const orderData = {
+                id: 'ORD' + Math.floor(Math.random() * 900000 + 100000),
+                customerName: name,
+                items: cart,
+                total: document.getElementById('summary-total').textContent
+            };
+            localStorage.setItem('lastOrder', JSON.stringify(orderData));
+            
+            // Clear cart
+            localStorage.removeItem('cart');
+            
+            window.location.href = 'confirmation.html';
+        }
+    </script>
+</body>
+</html>

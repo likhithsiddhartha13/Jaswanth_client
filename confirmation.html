@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed | GetFitWithJaswanth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-neutral-950 text-white font-['Inter'] flex flex-col min-h-screen">
+
+    <main class="flex-1 flex items-center justify-center p-4">
+        <div class="max-w-2xl w-full bg-neutral-900 rounded-3xl p-8 md:p-12 border border-neutral-800 text-center shadow-2xl">
+            <!-- Big Checkmark -->
+            <div class="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg shadow-green-500/20">
+                <i data-lucide="check" class="w-12 h-12 text-white stroke-[4]"></i>
+            </div>
+
+            <!-- Confirmation Message -->
+            <h1 id="greeting" class="text-3xl md:text-4xl font-black mb-4 uppercase tracking-tight">THANK YOU!</h1>
+            <p class="text-neutral-400 text-lg mb-8">Your order has been placed and is being processed.</p>
+
+            <!-- Order ID -->
+            <div class="inline-block px-6 py-2 bg-neutral-800 rounded-full text-sm font-bold text-yellow-400 mb-12">
+                ORDER ID: <span id="order-id">#ORD-000000</span>
+            </div>
+
+            <!-- Order Summary Table -->
+            <div class="text-left bg-neutral-950 rounded-2xl p-6 mb-12 border border-neutral-800">
+                <h3 class="font-bold text-neutral-300 uppercase text-xs tracking-widest mb-6">Purchased Items</h3>
+                <div id="confirmed-items" class="space-y-6">
+                    <!-- Items injected via script -->
+                </div>
+                <div class="flex justify-between items-center mt-8 pt-8 border-t border-neutral-800">
+                    <span class="text-neutral-500">Total Paid</span>
+                    <span id="final-total" class="text-2xl font-black text-yellow-400">₹0</span>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <a href="index.html" class="btn-primary inline-flex items-center justify-center gap-2 group min-w-[200px]">
+                <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
+                Back to Store
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer Copy -->
+    <footer class="py-8 text-center text-neutral-600 text-xs">
+        <p>&copy; 2026 Jaswantth Fitness. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lastOrder = JSON.parse(localStorage.getItem('lastOrder'));
+            if (!lastOrder) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            document.getElementById('greeting').textContent = `THANK YOU, ${lastOrder.customerName.split(' ')[0]}!`;
+            document.getElementById('order-id').textContent = '#' + lastOrder.id;
+            document.getElementById('final-total').textContent = lastOrder.total;
+
+            const itemsContainer = document.getElementById('confirmed-items');
+            itemsContainer.innerHTML = '';
+            
+            lastOrder.items.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'flex items-center gap-4';
+                itemDiv.innerHTML = `
+                    <div class="w-12 h-12 bg-neutral-800 rounded-lg overflow-hidden flex-shrink-0">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-bold text-sm text-white">${item.name}</p>
+                        <p class="text-xs text-neutral-500">Qty: ${item.quantity}</p>
+                    </div>
+                    <p class="font-bold text-sm">₹${(item.price * item.quantity).toLocaleString()}</p>
+                `;
+                itemsContainer.appendChild(itemDiv);
+            });
+
+            // Re-render icons
+            lucide.createIcons();
+            
+            // Clean up last order from storage after display
+            // localStorage.removeItem('lastOrder');
+        });
+    </script>
+</body>
+</html>

@@ -58,16 +58,7 @@
         <span class="text-xl font-bold tracking-tighter text-yellow-400"
           >GETFITWITHJASWANTH</span
         >
-        <button
-          onclick="toggleCart(true)"
-          class="relative p-2 text-neutral-400 hover:text-white transition-colors"
-        >
-          <i data-lucide="shopping-cart" class="w-6 h-6"></i>
-          <span
-            class="cart-count absolute -top-1 -right-1 bg-yellow-400 text-black text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden"
-            >0</span
-          >
-        </button>
+        <ul class="flex items-center space-x-4"></ul>
       </div>
     </nav>
 
@@ -120,9 +111,6 @@
         <div
           class="flex items-center justify-center gap-6 text-neutral-500 text-sm font-medium"
         >
-          <span class="flex items-center gap-2"
-            ><i data-lucide="shield-check" class="w-4 h-4 text-green-500"></i>
-            Secure Checkout</span
           >
           <span class="flex items-center gap-2"
             ><i data-lucide="clock" class="w-4 h-4 text-yellow-400"></i> Limited
@@ -152,23 +140,27 @@
       </div>
     </div>
 
-    <!-- Main Content / Products -->
-    <section id="products" class="py-24 bg-neutral-950">
+    <!-- Plans Section -->
+    <section id="plans" class="py-24 bg-neutral-950">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-5xl font-bold mb-4">Choose Your Path</h2>
-          <p class="text-neutral-500">Pick the program that fits your goals.</p>
+          <h2 class="text-3xl md:text-5xl font-bold mb-4">
+            Our Exclusive Plans
+          </h2>
+          <p class="text-neutral-500">
+            Choose the path that best suits your fitness journey.
+          </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Product 1 -->
+          <!-- Product 1: Starter Assets Pack (499) -->
           <div
             class="product-card bg-neutral-900 rounded-2xl overflow-hidden border border-neutral-800 flex flex-col"
           >
             <img
               src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop"
               class="h-64 w-full object-cover"
-              alt="12-Week Shred"
+              alt="Starter Assets Pack"
             />
             <div class="p-6 flex flex-col flex-1">
               <div class="flex justify-between items-start mb-2">
@@ -176,26 +168,84 @@
                 <span class="text-yellow-400 font-bold">₹499</span>
               </div>
               <p class="text-neutral-400 text-sm mb-6 flex-1">
-                The complete system to get shredded. Used by over 10k+ clients
-                worldwide.
+                Kickstart your fitness journey with essential guides. This pack
+                includes foundational workout routines, basic nutrition
+                guidelines, and access to a library of exercise demonstrations
+                to ensure proper form.
               </p>
               <button
                 onclick="
-                  addToCart({
-                    id: 'p1',
-                    name: '12-Week Shred Program',
-                    price: 1999,
-                    image:
-                      'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop',
-                  })
+                  location.href =
+                    'https://www.instagram.com/jaswantth_kattungaa/'
                 "
                 class="btn-primary w-full"
               >
-                Add to Cart
+                Apply Now
               </button>
             </div>
           </div>
-          <!-- Product 2 -->
+
+          <!-- Product 2: All Resources + Chat Assistance (999) -->
+          <div
+            class="product-card bg-neutral-900 rounded-2xl overflow-hidden border border-neutral-800 flex flex-col"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2040&auto=format&fit=crop"
+              class="h-64 w-full object-cover"
+              alt="All Resources + Chat Assistance"
+            />
+            <div class="p-6 flex flex-col flex-1">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold">
+                  All Resources + Chat Assistance
+                </h3>
+                <span class="text-yellow-400 font-bold">₹999</span>
+              </div>
+              <p class="text-neutral-400 text-sm mb-6 flex-1">
+                Gain access to an extensive library of premium workout plans,
+                advanced nutrition strategies, and exclusive video content.
+                Plus, get direct chat assistance from Jaswanth for all your
+                queries and motivation.
+              </p>
+              <a
+                href="https://www.instagram.com/jaswantth_kattungaa/"
+                class="btn-primary w-full"
+              >
+                Apply Now
+              </a>
+            </div>
+          </div>
+
+          <!-- Product 3: Supplement Starter Pack (2499) -->
+          <div
+            class="product-card bg-neutral-900 rounded-2xl overflow-hidden border border-neutral-800 flex flex-col"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1593095199071-f3779517babd?q=80&w=2070&auto=format&fit=crop"
+              class="h-64 w-full object-cover"
+              alt="Supplement Starter Pack"
+            />
+            <div class="p-6 flex flex-col flex-1">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold">Supplement Starter Pack</h3>
+                <span class="text-yellow-400 font-bold">₹2,499</span>
+              </div>
+              <p class="text-neutral-400 text-sm mb-6 flex-1">
+                Receive a curated supplement kit, high-quality resistance bands,
+                and a comprehensive meal plan guide. This bundle is designed to
+                accelerate your results and provide all the tools you need for
+                success. Save 30% when bundled.
+              </p>
+              <a
+                href="https://www.instagram.com/jaswantth_kattungaa/"
+                class="btn-primary w-full"
+              >
+                Apply Now
+              </a>
+            </div>
+          </div>
+
+          <!-- Product 5: 1-on-1 Coaching (7999) -->
           <div
             class="product-card bg-neutral-900 rounded-2xl overflow-hidden border-2 border-yellow-400 relative flex flex-col"
           >
@@ -211,61 +261,21 @@
             />
             <div class="p-6 flex flex-col flex-1">
               <div class="flex justify-between items-start mb-2">
-                <h3 class="text-xl font-bold">1-on-1 Coaching</h3>
+                <h3 class="text-xl font-bold">1-on-1 Coaching (30 days)</h3>
                 <span class="text-yellow-400 font-bold">₹7,999</span>
               </div>
               <p class="text-neutral-400 text-sm mb-6 flex-1">
-                Work directly with Jaswanth. Personalized training, diet, and
-                weekly 1-on-1 calls.
+                Work directly with Jaswanth for personalized training. This
+                premium package includes a custom training program, tailored
+                diet plans, weekly 1-on-1 video calls, and 24/7 priority support
+                to guarantee your success.
               </p>
-              <button
-                onclick="
-                  addToCart({
-                    id: 'p4',
-                    name: '1-on-1 Coaching (30 days)',
-                    price: 7999,
-                    image:
-                      'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2040&auto=format&fit=crop',
-                  })
-                "
+              <a
+                href="https://www.instagram.com/jaswantth_kattungaa/"
                 class="btn-primary w-full"
               >
                 Apply Now
-              </button>
-            </div>
-          </div>
-          <!-- Product 3 -->
-          <div
-            class="product-card bg-neutral-900 rounded-2xl overflow-hidden border border-neutral-800 flex flex-col"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1593095199071-f3779517babd?q=80&w=2070&auto=format&fit=crop"
-              class="h-64 w-full object-cover"
-              alt="Supplements"
-            />
-            <div class="p-6 flex flex-col flex-1">
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="text-xl font-bold">Starter Bundle</h3>
-                <span class="text-yellow-400 font-bold">₹2,499</span>
-              </div>
-              <p class="text-neutral-400 text-sm mb-6 flex-1">
-                Supplement kit + Resistance bands + Meal plan guide. Save 30%
-                when bundled.
-              </p>
-              <button
-                onclick="
-                  addToCart({
-                    id: 'p6',
-                    name: 'Supplement Starter Pack',
-                    price: 2499,
-                    image:
-                      'https://images.unsplash.com/photo-1593095199071-f3779517babd?q=80&w=2070&auto=format&fit=crop',
-                  })
-                "
-                class="btn-primary w-full"
-              >
-                Add to Cart
-              </button>
+              </a>
             </div>
           </div>
         </div>

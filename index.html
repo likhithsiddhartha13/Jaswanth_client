@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -17,9 +17,9 @@
         background: #000;
         position: relative;
         overflow: hidden;
-        border: 4px solid #262626;
+        border: 2px solid #262626;
         border-radius: 1rem;
-        box-shadow: 0 0 50px rgba(250, 204, 21, 0.1);
+        box-shadow: 0 0 60px rgba(250, 204, 21, 0.12);
       }
       .pulse-btn {
         animation: pulse-yellow 2s infinite;
@@ -38,244 +38,538 @@
           box-shadow: 0 0 0 0 rgba(250, 204, 21, 0);
         }
       }
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marquee 20s linear infinite;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      @media (max-width: 900px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .step-connector::after {
+        content: "";
+        position: absolute;
+        top: 2rem;
+        left: calc(100% + 0.5rem);
+        width: calc(100% - 1rem);
+        height: 2px;
+        background: linear-gradient(90deg, #facc15, transparent);
+      }
+      @media (max-width: 768px) {
+        .step-connector::after {
+          display: none;
+        }
+      }
+      .glow-yellow {
+        box-shadow: 0 0 40px rgba(250, 204, 21, 0.15);
+      }
+      .plan-feature {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        color: #a3a3a3;
+        margin-bottom: 0.5rem;
+      }
+      .plan-feature svg {
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      details[open] summary .icon-plus {
+        display: none;
+      }
+      details:not([open]) summary .icon-minus {
+        display: none;
+      }
     </style>
   </head>
   <body class="bg-neutral-950 text-white font-['Inter']">
     <!-- Top Bar -->
     <div
-      class="bg-yellow-400 text-black py-2 text-center text-sm font-bold uppercase tracking-widest"
+      class="bg-yellow-400 text-black py-2.5 text-center text-xs font-bold uppercase tracking-widest"
     >
-      Exclusive: Only 12 Spots Left for 1-on-1 Coaching this month!
+      <span class="inline-flex items-center gap-2">
+        <span>🔥</span>
+        Exclusive: Only 3 Spots Left for 1-on-1 Coaching this month!
+        <span>🔥</span>
+      </span>
     </div>
 
     <!-- Navbar -->
     <nav
-      class="bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800 py-4"
+      class="sticky top-0 z-50 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800/60 py-4"
     >
       <div
         class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center"
       >
-        <span class="text-xl font-bold tracking-tighter text-yellow-400"
+        <span class="text-lg font-black tracking-tighter text-yellow-400"
           >GETFITWITHJASWANTH</span
         >
-        <ul class="flex items-center space-x-4"></ul>
+        <ul
+          class="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-400"
+        >
+          <li>
+            <a href="#how-it-works" class="hover:text-white transition-colors"
+              >How It Works</a
+            >
+          </li>
+          <li>
+            <a href="#plans" class="hover:text-white transition-colors"
+              >Plans</a
+            >
+          </li>
+          <li>
+            <a href="#testimonials" class="hover:text-white transition-colors"
+              >Results</a
+            >
+          </li>
+          <li>
+            <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+          </li>
+        </ul>
+        <a href="#plans" class="btn-primary text-sm px-5 py-2.5 rounded-lg"
+          >Get Started</a
+        >
       </div>
     </nav>
 
-    <!-- VSL Hero Section -->
-    <section class="py-16 md:py-24 px-4 max-w-5xl mx-auto text-center">
-      <h2
-        class="text-yellow-400 font-bold uppercase tracking-[0.2em] mb-6 text-sm md:text-base"
-      >
-        Training for Serious Individuals
-      </h2>
-      <h1 class="text-4xl md:text-6xl font-black mb-10 leading-tight">
-        THE 4-TIER SYSTEM
-        <span class="bg-yellow-400 text-black px-2">DESIGNED</span> TO TAKE YOU
-        FROM BEGINNER TO ELITE PHYSIQUE.
-      </h1>
-
-      <!-- Video Player (VSL) -->
-      <div class="vsl-container mb-12 group cursor-pointer shadow-2xl">
-        <img
-          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop"
-          alt="VSL Thumbnail"
-          class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity"
-        />
-        <div class="absolute inset-0 flex items-center justify-center">
-          <div
-            class="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center text-black shadow-xl group-hover:scale-110 transition-transform pulse-btn"
+    <!-- Hero Section -->
+    <section class="py-20 md:py-28 px-4">
+      <div class="max-w-7xl mx-auto hero-grid">
+        <!-- Left: Copy -->
+        <div>
+          <span
+            class="inline-block bg-yellow-400/10 text-yellow-400 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6 border border-yellow-400/20"
           >
-            <i data-lucide="play" class="w-10 h-10 fill-current"></i>
+            The 4-Tier Training System
+          </span>
+          <h1
+            class="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] mb-6"
+          >
+            FROM <span class="text-yellow-400">BEGINNER</span><br />
+            TO ELITE<br />
+            PHYSIQUE.
+          </h1>
+          <p class="text-neutral-400 text-lg leading-relaxed mb-8 max-w-md">
+            A proven, structured system designed for serious individuals who
+            want real results — not generic programs.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 mb-10">
+            <a
+              href="#plans"
+              class="btn-primary py-4 px-8 text-base font-bold rounded-xl inline-flex items-center justify-center gap-2 pulse-btn"
+            >
+              Start Your Transformation
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+            <a
+              href="#how-it-works"
+              class="btn-outline py-4 px-8 text-base font-bold rounded-xl inline-flex items-center justify-center gap-2"
+            >
+              See How It Works
+            </a>
+          </div>
+          <!-- Social Proof Inline -->
+          <div class="flex items-center gap-6 text-sm text-neutral-500">
+            <div class="flex items-center gap-2">
+              <div class="flex -space-x-2">
+                <div
+                  class="w-7 h-7 rounded-full bg-yellow-400 border-2 border-neutral-950"
+                ></div>
+                <div
+                  class="w-7 h-7 rounded-full bg-yellow-600 border-2 border-neutral-950"
+                ></div>
+                <div
+                  class="w-7 h-7 rounded-full bg-yellow-300 border-2 border-neutral-950"
+                ></div>
+              </div>
+              <span>100+ clients</span>
+            </div>
+            <div class="flex items-center gap-1 text-yellow-400">
+              <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+              <span class="text-neutral-400 ml-1">4.9/5</span>
+            </div>
           </div>
         </div>
-        <div
-          class="absolute bottom-4 left-4 right-4 text-left text-xs text-neutral-400 flex justify-between items-center"
-        >
-          <span
-            ><i data-lucide="eye" class="w-3 h-3 inline mr-1"></i> 1,248 people
-            watching right now</span
-          >
-          <span class="hidden md:block">0:00 / 12:45</span>
-        </div>
-      </div>
 
-      <!-- CTA Below Video -->
-      <div class="space-y-6">
-        <a
-          href="#products"
-          class="btn-primary py-5 px-12 text-xl font-bold rounded-2xl inline-block shadow-lg shadow-yellow-400/20 pulse-btn"
-        >
-          YES! I WANT TO TRANSFORM MY LIFE
-        </a>
-        <div
-          class="flex items-center justify-center gap-6 text-neutral-500 text-sm font-medium"
-        >
-          >
-          <span class="flex items-center gap-2"
-            ><i data-lucide="clock" class="w-4 h-4 text-yellow-400"></i> Limited
-            Time Offer</span
-          >
+        <!-- Right: VSL Video -->
+        <div>
+          <div class="vsl-container group cursor-pointer">
+            <img
+              src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop"
+              alt="VSL Thumbnail"
+              class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300"
+            />
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div
+                class="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center text-black shadow-xl group-hover:scale-110 transition-transform pulse-btn"
+              >
+                <i data-lucide="play" class="w-10 h-10 fill-current ml-1"></i>
+              </div>
+            </div>
+            <div class="absolute top-4 left-4">
+              <span
+                class="bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1"
+              >
+                <span
+                  class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"
+                ></span>
+                LIVE
+              </span>
+            </div>
+            <div
+              class="absolute bottom-4 left-4 right-4 flex justify-between items-center text-xs text-neutral-400"
+            >
+              <span class="flex items-center gap-1">
+                <i data-lucide="eye" class="w-3 h-3"></i> 1,248 watching now
+              </span>
+              <span>0:00 / 12:45</span>
+            </div>
+          </div>
+          <!-- Video Caption -->
+          <p class="text-center text-neutral-500 text-xs mt-3">
+            Watch this before choosing a plan — it explains everything.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Trust Strip -->
-    <div
-      class="bg-neutral-900 py-10 border-y border-neutral-800 overflow-hidden"
-    >
-      <div
-        class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-12 md:gap-24 items-center opacity-50 grayscale hover:grayscale-0 transition-all"
-      >
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/5/53/Forbes_logo.svg"
-          alt="Forbes"
-          class="h-6 filter invert"
-        />
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Wired_logo.svg"
-          alt="Wired"
-          class="h-6 filter invert"
-        />
+    <!-- Stats Bar -->
+    <div class="bg-neutral-900 border-y border-neutral-800 py-10">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <p class="text-4xl font-black text-yellow-400">100+</p>
+            <p class="text-neutral-500 text-sm mt-1">Clients Transformed</p>
+          </div>
+          <div>
+            <p class="text-4xl font-black text-yellow-400">4.9★</p>
+            <p class="text-neutral-500 text-sm mt-1">Average Rating</p>
+          </div>
+          <div>
+            <p class="text-4xl font-black text-yellow-400">30–90</p>
+            <p class="text-neutral-500 text-sm mt-1">Days to First Results</p>
+          </div>
+          <div>
+            <p class="text-4xl font-black text-yellow-400">4</p>
+            <p class="text-neutral-500 text-sm mt-1">Structured Tiers</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Plans Section -->
-    <section id="plans" class="py-24 bg-neutral-950">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-24 px-4 bg-neutral-950">
+      <div class="max-w-5xl mx-auto">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-5xl font-bold mb-4">
-            Our Exclusive Plans
+          <span
+            class="text-yellow-400 text-xs font-bold uppercase tracking-widest"
+            >The System</span
+          >
+          <h2 class="text-3xl md:text-5xl font-black mt-3 mb-4">
+            How The 4-Tier System Works
+          </h2>
+          <p class="text-neutral-500 max-w-xl mx-auto">
+            Each tier builds on the last — a structured progression from
+            foundation to elite.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <!-- Step 1 -->
+          <div
+            class="bg-neutral-900 rounded-2xl p-6 border border-neutral-800 relative"
+          >
+            <div
+              class="w-10 h-10 bg-yellow-400 text-black rounded-full flex items-center justify-center font-black text-lg mb-4"
+            >
+              1
+            </div>
+            <h3 class="font-bold text-base mb-2">Foundation</h3>
+            <p class="text-neutral-500 text-sm">
+              Build the base — form, habit, and nutrition fundamentals that
+              everything else relies on.
+            </p>
+          </div>
+          <!-- Step 2 -->
+          <div class="bg-neutral-900 rounded-2xl p-6 border border-neutral-800">
+            <div
+              class="w-10 h-10 bg-yellow-400 text-black rounded-full flex items-center justify-center font-black text-lg mb-4"
+            >
+              2
+            </div>
+            <h3 class="font-bold text-base mb-2">Structure</h3>
+            <p class="text-neutral-500 text-sm">
+              Progressive overload, meal timing, and targeted training to break
+              plateaus fast.
+            </p>
+          </div>
+          <!-- Step 3 -->
+          <div class="bg-neutral-900 rounded-2xl p-6 border border-neutral-800">
+            <div
+              class="w-10 h-10 bg-yellow-400 text-black rounded-full flex items-center justify-center font-black text-lg mb-4"
+            >
+              3
+            </div>
+            <h3 class="font-bold text-base mb-2">Optimization</h3>
+            <p class="text-neutral-500 text-sm">
+              Supplement strategy, recovery protocols, and advanced programming
+              for serious athletes.
+            </p>
+          </div>
+          <!-- Step 4 -->
+          <div
+            class="bg-neutral-900 rounded-2xl p-6 border border-yellow-400/30 glow-yellow"
+          >
+            <div
+              class="w-10 h-10 bg-yellow-400 text-black rounded-full flex items-center justify-center font-black text-lg mb-4"
+            >
+              4
+            </div>
+            <h3 class="font-bold text-base mb-2">Elite</h3>
+            <p class="text-neutral-500 text-sm">
+              1-on-1 mentorship, fully custom plans, and weekly calls with
+              Jaswanth directly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="plans" class="py-24 bg-neutral-900 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <span
+            class="text-yellow-400 text-xs font-bold uppercase tracking-widest"
+            >Pricing</span
+          >
+          <h2 class="text-3xl md:text-5xl font-black mt-3 mb-4">
+            Choose Your Tier
           </h2>
           <p class="text-neutral-500">
-            Choose the path that best suits your fitness journey.
+            Every plan includes lifetime access to updates. No hidden fees.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Product 1: Starter Assets Pack (499) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Tier 1 -->
           <div
-            class="product-card bg-neutral-900 rounded-2xl overflow-hidden border border-neutral-800 flex flex-col"
+            class="product-card bg-neutral-950 rounded-2xl overflow-hidden border border-neutral-800 flex flex-col"
           >
-            <img
-              src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop"
-              class="h-64 w-full object-cover"
-              alt="Starter Assets Pack"
-            />
-            <div class="p-6 flex flex-col flex-1">
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="text-xl font-bold">Starter Assets Pack</h3>
-                <span class="text-yellow-400 font-bold">₹499</span>
-              </div>
-              <p class="text-neutral-400 text-sm mb-6 flex-1">
-                Kickstart your fitness journey with essential guides. This pack
-                includes foundational workout routines, basic nutrition
-                guidelines, and access to a library of exercise demonstrations
-                to ensure proper form.
-              </p>
-              <button
-                onclick="
-                  location.href =
-                    'https://www.instagram.com/jaswantth_kattungaa/'
-                "
-                class="btn-primary w-full"
-              >
-                Apply Now
-              </button>
+            <div class="h-40 overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop"
+                class="w-full h-full object-cover opacity-70"
+                alt="Starter Assets Pack"
+              />
             </div>
-          </div>
-
-          <!-- Product 2: All Resources + Chat Assistance (999) -->
-          <div
-            class="product-card bg-neutral-900 rounded-2xl overflow-hidden border border-neutral-800 flex flex-col"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2040&auto=format&fit=crop"
-              class="h-64 w-full object-cover"
-              alt="All Resources + Chat Assistance"
-            />
             <div class="p-6 flex flex-col flex-1">
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="text-xl font-bold">
-                  All Resources + Chat Assistance
-                </h3>
-                <span class="text-yellow-400 font-bold">₹999</span>
+              <span
+                class="text-yellow-400 text-xs font-bold uppercase tracking-wider mb-2"
+                >Tier 1</span
+              >
+              <h3 class="text-lg font-black mb-1">Starter Assets Pack</h3>
+              <div class="flex items-baseline gap-1 mb-4">
+                <span class="text-3xl font-black text-yellow-400">₹499</span>
+                <span class="text-neutral-600 text-sm">one-time</span>
               </div>
-              <p class="text-neutral-400 text-sm mb-6 flex-1">
-                Gain access to an extensive library of premium workout plans,
-                advanced nutrition strategies, and exclusive video content.
-                Plus, get direct chat assistance from Jaswanth for all your
-                queries and motivation.
-              </p>
+              <div class="flex-1 mb-6 space-y-2">
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Foundational workout routines
+                </div>
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Basic nutrition guidelines
+                </div>
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Exercise demonstration library
+                </div>
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Lifetime access
+                </div>
+              </div>
               <a
                 href="https://www.instagram.com/jaswantth_kattungaa/"
-                class="btn-primary w-full"
+                class="btn-outline w-full rounded-lg text-sm py-3 font-bold"
+                >Apply Now</a
               >
-                Apply Now
-              </a>
             </div>
           </div>
 
-          <!-- Product 3: Supplement Starter Pack (2499) -->
+          <!-- Tier 2 -->
           <div
-            class="product-card bg-neutral-900 rounded-2xl overflow-hidden border border-neutral-800 flex flex-col"
+            class="product-card bg-neutral-950 rounded-2xl overflow-hidden border border-neutral-800 flex flex-col"
           >
-            <img
-              src="https://images.unsplash.com/photo-1593095199071-f3779517babd?q=80&w=2070&auto=format&fit=crop"
-              class="h-64 w-full object-cover"
-              alt="Supplement Starter Pack"
-            />
+            <div class="h-40 overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2040&auto=format&fit=crop"
+                class="w-full h-full object-cover opacity-70"
+                alt="All Resources + Chat Assistance"
+              />
+            </div>
             <div class="p-6 flex flex-col flex-1">
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="text-xl font-bold">Supplement Starter Pack</h3>
-                <span class="text-yellow-400 font-bold">₹2,499</span>
+              <span
+                class="text-yellow-400 text-xs font-bold uppercase tracking-wider mb-2"
+                >Tier 2</span
+              >
+              <h3 class="text-lg font-black mb-1">All Resources + Chat</h3>
+              <div class="flex items-baseline gap-1 mb-4">
+                <span class="text-3xl font-black text-yellow-400">₹999</span>
+                <span class="text-neutral-600 text-sm">one-time</span>
               </div>
-              <p class="text-neutral-400 text-sm mb-6 flex-1">
-                Receive a curated supplement kit, high-quality resistance bands,
-                and a comprehensive meal plan guide. This bundle is designed to
-                accelerate your results and provide all the tools you need for
-                success. Save 30% when bundled.
-              </p>
+              <div class="flex-1 mb-6 space-y-2">
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Everything in Tier 1
+                </div>
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Premium workout plan library
+                </div>
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Advanced nutrition strategies
+                </div>
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Direct chat with Jaswanth
+                </div>
+              </div>
               <a
                 href="https://www.instagram.com/jaswantth_kattungaa/"
-                class="btn-primary w-full"
+                class="btn-outline w-full rounded-lg text-sm py-3 font-bold"
+                >Apply Now</a
               >
-                Apply Now
-              </a>
             </div>
           </div>
 
-          <!-- Product 5: 1-on-1 Coaching (7999) -->
+          <!-- Tier 3 -->
           <div
-            class="product-card bg-neutral-900 rounded-2xl overflow-hidden border-2 border-yellow-400 relative flex flex-col"
+            class="product-card bg-neutral-950 rounded-2xl overflow-hidden border border-neutral-800 flex flex-col"
+          >
+            <div class="h-40 overflow-hidden">
+              <img
+                src="https://wallpapers.com/images/hd/cool-weight-lifting-silhouette-lvftjpkqnmir14uf.jpgs"
+                class="w-full h-full object-cover opacity-70"
+                alt="Supplement Starter Pack"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <span
+                class="text-yellow-400 text-xs font-bold uppercase tracking-wider mb-2"
+                >Tier 3</span
+              >
+              <h3 class="text-lg font-black mb-1">90 Days Transformation</h3>
+              <div class="flex items-baseline gap-1 mb-4">
+                <span class="text-3xl font-black text-yellow-400">₹2,499</span>
+                <span class="text-neutral-600 text-sm">one-time</span>
+              </div>
+              <div class="flex-1 mb-6 space-y-2">
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Everything in Tier 2
+                </div>
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Curated supplement kit
+                </div>
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >High-quality resistance bands
+                </div>
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Weekly Calls
+                </div>
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Comprehensive meal plan — save 30%
+                </div>
+              </div>
+              <a
+                href="https://www.instagram.com/jaswantth_kattungaa/"
+                class="btn-outline w-full rounded-lg text-sm py-3 font-bold"
+                >Apply Now</a
+              >
+            </div>
+          </div>
+
+          <!-- Tier 4 — Best Value -->
+          <div
+            class="product-card bg-neutral-950 rounded-2xl overflow-hidden border-2 border-yellow-400 flex flex-col glow-yellow relative"
           >
             <div
-              class="absolute top-0 right-0 bg-yellow-400 text-black px-4 py-1 text-xs font-black uppercase rounded-bl-xl"
+              class="absolute top-0 left-0 right-0 bg-yellow-400 text-black text-center text-xs font-black py-1.5 uppercase tracking-wider z-10"
             >
-              Best Value
+              Best Value — Most Popular
             </div>
-            <img
-              src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2040&auto=format&fit=crop"
-              class="h-64 w-full object-cover"
-              alt="1-on-1 Coaching"
-            />
+            <div class="h-40 overflow-hidden mt-7">
+              <img
+                src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2040&auto=format&fit=crop"
+                class="w-full h-full object-cover opacity-70"
+                alt="1-on-1 Coaching"
+              />
+            </div>
             <div class="p-6 flex flex-col flex-1">
-              <div class="flex justify-between items-start mb-2">
-                <h3 class="text-xl font-bold">1-on-1 Coaching (30 days)</h3>
-                <span class="text-yellow-400 font-bold">₹7,999</span>
+              <span
+                class="text-yellow-400 text-xs font-bold uppercase tracking-wider mb-2"
+                >Tier 4 — Elite</span
+              >
+              <h3 class="text-lg font-black mb-1">1-on-1 Coaching</h3>
+              <div class="flex items-baseline gap-1 mb-4">
+                <span class="text-3xl font-black text-yellow-400">₹7,999</span>
+                <span class="text-neutral-600 text-sm">/ 30 days</span>
               </div>
-              <p class="text-neutral-400 text-sm mb-6 flex-1">
-                Work directly with Jaswanth for personalized training. This
-                premium package includes a custom training program, tailored
-                diet plans, weekly 1-on-1 video calls, and 24/7 priority support
-                to guarantee your success.
-              </p>
+              <div class="flex-1 mb-6 space-y-2">
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Everything in Tier 3
+                </div>
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Custom training program
+                </div>
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Tailored diet plans
+                </div>
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >Weekly 1-on-1 video calls
+                </div>
+                <div class="plan-feature">
+                  <i data-lucide="check" class="w-4 h-4 text-yellow-400"></i
+                  >24/7 priority support
+                </div>
+              </div>
               <a
                 href="https://www.instagram.com/jaswantth_kattungaa/"
-                class="btn-primary w-full"
+                class="btn-primary w-full rounded-lg text-sm py-3 font-bold"
+                >Apply Now</a
               >
-                Apply Now
-              </a>
             </div>
           </div>
         </div>
@@ -283,64 +577,110 @@
     </section>
 
     <!-- Testimonials -->
-    <section class="py-24 bg-neutral-900">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl md:text-5xl font-bold mb-16 uppercase">
-          Don't believe me? Listen to them.
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            class="bg-neutral-950 p-1 rounded-3xl border border-neutral-800 overflow-hidden"
+    <section id="testimonials" class="py-24 bg-neutral-950 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <span
+            class="text-yellow-400 text-xs font-bold uppercase tracking-widest"
+            >Results</span
           >
-            <img
-              src="https://images.unsplash.com/photo-1552196564-972b347f64d4?q=80&w=1974&auto=format&fit=crop"
-              class="h-64 w-full object-cover mb-6"
-              alt="Client transformation"
-            />
-            <div class="p-6 text-left">
-              <p class="font-bold mb-2">
-                Rahul S. <span class="text-yellow-400">-12kg in 90 days</span>
+          <h2 class="text-3xl md:text-5xl font-black mt-3 mb-4">
+            Real People. Real Results.
+          </h2>
+          <p class="text-neutral-500">Don't believe me? Listen to them.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Testimonial 1 -->
+          <div
+            class="bg-neutral-900 rounded-2xl overflow-hidden border border-neutral-800"
+          >
+            <img src="/images/image.png" alt="Rahul S. transformation" />
+            <div class="p-6">
+              <div class="flex items-center gap-1 text-yellow-400 mb-3">
+                <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+              </div>
+              <p class="text-sm text-neutral-300 italic mb-4 leading-relaxed">
+                "The system explained things that no other coach ever told me.
+                Following the program was easy and the results were real."
               </p>
-              <p class="text-sm text-neutral-400 italic">
-                "The VSL explained things that no other coach ever told me.
-                Following the Shred program was easy and effective."
-              </p>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-9 h-9 rounded-full bg-yellow-400/20 flex items-center justify-center text-yellow-400 font-bold text-sm"
+                >
+                  R
+                </div>
+                <div>
+                  <p class="font-bold text-sm">Sri Ram</p>
+                  <p class="text-yellow-400 text-xs font-semibold"></p>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- Testimonial 2 -->
           <div
-            class="bg-neutral-950 p-1 rounded-3xl border border-neutral-800 overflow-hidden"
+            class="bg-neutral-900 rounded-2xl overflow-hidden border border-neutral-800"
           >
-            <img
-              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop"
-              class="h-64 w-full object-cover mb-6"
-              alt="Client transformation"
-            />
-            <div class="p-6 text-left">
-              <p class="font-bold mb-2">
-                Sneha K. <span class="text-yellow-400">Toned & Strong</span>
-              </p>
-              <p class="text-sm text-neutral-400 italic">
+            <img src="/images/image4.png" alt="Sneha K. transformation" />
+            <div class="p-6">
+              <div class="flex items-center gap-1 text-yellow-400 mb-3">
+                <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+              </div>
+              <p class="text-sm text-neutral-300 italic mb-4 leading-relaxed">
                 "I was scared of eating carbs until Jaswanth showed me the
-                truth. Best decision of my life."
+                truth. Best decision of my life. I feel strong and confident
+                now."
               </p>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-9 h-9 rounded-full bg-yellow-400/20 flex items-center justify-center text-yellow-400 font-bold text-sm"
+                >
+                  S
+                </div>
+                <div>
+                  <p class="font-bold text-sm">Janaki.</p>
+                  <p class="text-yellow-400 text-xs font-semibold"></p>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- Testimonial 3 -->
           <div
-            class="bg-neutral-950 p-1 rounded-3xl border border-neutral-800 overflow-hidden"
+            class="bg-neutral-900 rounded-2xl overflow-hidden border border-neutral-800"
           >
-            <img
-              src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1974&auto=format&fit=crop"
-              class="h-64 w-full object-cover mb-6"
-              alt="Client transformation"
-            />
-            <div class="p-6 text-left">
-              <p class="font-bold mb-2">
-                Vikram M. <span class="text-yellow-400">Elite Physique</span>
-              </p>
-              <p class="text-sm text-neutral-400 italic">
+            <img src="/images/image3.png" alt="Vikram M. transformation" />
+            <div class="p-6">
+              <div class="flex items-center gap-1 text-yellow-400 mb-3">
+                <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-yellow-400"></i>
+              </div>
+              <p class="text-sm text-neutral-300 italic mb-4 leading-relaxed">
                 "The 1-on-1 coaching is worth every penny. You're not just
-                buying a plan, you're buying a mentor."
+                buying a plan, you're buying a mentor who genuinely cares."
               </p>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-9 h-9 rounded-full bg-yellow-400/20 flex items-center justify-center text-yellow-400 font-bold text-sm"
+                >
+                  V
+                </div>
+                <div>
+                  <p class="font-bold text-sm">Mohiddin</p>
+                  <p class="text-yellow-400 text-xs font-semibold"></p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -348,63 +688,127 @@
     </section>
 
     <!-- FAQ -->
-    <section class="py-24 bg-neutral-950 px-4">
-      <div class="max-w-3xl mx-auto">
-        <h2
-          class="text-3xl font-bold mb-12 text-center uppercase tracking-widest"
-        >
-          Frequently Asked
-        </h2>
-        <div class="space-y-4">
+    <section id="faq" class="py-24 bg-neutral-900 px-4">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-12">
+          <span
+            class="text-yellow-400 text-xs font-bold uppercase tracking-widest"
+            >FAQ</span
+          >
+          <h2 class="text-3xl font-black mt-3">Frequently Asked</h2>
+        </div>
+        <div class="space-y-3">
           <details
-            class="bg-neutral-900 rounded-xl p-6 border border-neutral-800 group"
+            class="bg-neutral-950 rounded-xl border border-neutral-800 group"
           >
             <summary
-              class="font-bold list-none cursor-pointer flex justify-between items-center"
+              class="font-bold text-sm cursor-pointer flex justify-between items-center p-5 list-none"
             >
               Is this for beginners?
               <i
                 data-lucide="plus"
-                class="w-5 h-5 group-open:rotate-45 transition-transform"
+                class="icon-plus w-5 h-5 text-neutral-400 flex-shrink-0"
+              ></i>
+              <i
+                data-lucide="minus"
+                class="icon-minus w-5 h-5 text-yellow-400 flex-shrink-0"
               ></i>
             </summary>
-            <p class="text-neutral-400 mt-4 text-sm">
+            <p class="text-neutral-400 text-sm px-5 pb-5 leading-relaxed">
               Absolutely. The programs are designed to take you from square one
               to advanced levels with easy-to-follow video instructions.
             </p>
           </details>
           <details
-            class="bg-neutral-900 rounded-xl p-6 border border-neutral-800 group"
+            class="bg-neutral-950 rounded-xl border border-neutral-800 group"
           >
             <summary
-              class="font-bold list-none cursor-pointer flex justify-between items-center"
+              class="font-bold text-sm cursor-pointer flex justify-between items-center p-5 list-none"
             >
               How long will it take to see results?
               <i
                 data-lucide="plus"
-                class="w-5 h-5 group-open:rotate-45 transition-transform"
+                class="icon-plus w-5 h-5 text-neutral-400 flex-shrink-0"
+              ></i>
+              <i
+                data-lucide="minus"
+                class="icon-minus w-5 h-5 text-yellow-400 flex-shrink-0"
               ></i>
             </summary>
-            <p class="text-neutral-400 mt-4 text-sm">
+            <p class="text-neutral-400 text-sm px-5 pb-5 leading-relaxed">
               Most clients see visible changes in their energy and physique
-              within the first 14-21 days of strictly following the protocol.
+              within the first 30-–90 days of strictly following the protocol.
+            </p>
+          </details>
+          <details
+            class="bg-neutral-950 rounded-xl border border-neutral-800 group"
+          >
+            <summary
+              class="font-bold text-sm cursor-pointer flex justify-between items-center p-5 list-none"
+            >
+              Which plan should I start with?
+              <i
+                data-lucide="plus"
+                class="icon-plus w-5 h-5 text-neutral-400 flex-shrink-0"
+              ></i>
+              <i
+                data-lucide="minus"
+                class="icon-minus w-5 h-5 text-yellow-400 flex-shrink-0"
+              ></i>
+            </summary>
+            <p class="text-neutral-400 text-sm px-5 pb-5 leading-relaxed">
+              If you're new, start with Tier 1 or 2. If you're ready to commit
+              fully and want the fastest results, go straight to Tier 4 — the
+              1-on-1 coaching.
             </p>
           </details>
         </div>
       </div>
     </section>
 
+    <!-- Final CTA Section -->
+    <section class="py-24 bg-neutral-950 px-4 text-center">
+      <div class="max-w-2xl mx-auto">
+        <span
+          class="text-yellow-400 text-xs font-bold uppercase tracking-widest"
+          >Limited Spots</span
+        >
+        <h2 class="text-4xl md:text-5xl font-black mt-4 mb-6">
+          Ready to Transform?
+        </h2>
+        <p class="text-neutral-400 mb-10 leading-relaxed">
+          12 coaching spots remaining this month. Once they're gone, you're on
+          the waitlist.
+        </p>
+        <a
+          href="#plans"
+          class="btn-primary py-5 px-12 text-lg font-bold rounded-2xl inline-flex items-center gap-3 pulse-btn"
+        >
+          YES! I WANT TO TRANSFORM MY LIFE
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </a>
+        <p class="text-neutral-600 text-xs mt-6">
+          No risk. Consult a doctor before starting any intense program.
+        </p>
+      </div>
+    </section>
+
     <!-- Footer -->
-    <footer
-      class="py-12 bg-neutral-900 text-center border-t border-neutral-800"
-    >
-      <p class="text-neutral-500 text-xs mb-4">
-        Results vary based on effort and consistency. Consult a doctor before
-        starting any intense program.
-      </p>
-      <p class="text-sm text-neutral-400">
-        &copy; 2026 GetFitWithJaswanth. All rights reserved.
-      </p>
+    <footer class="py-12 bg-neutral-900 border-t border-neutral-800">
+      <div
+        class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6"
+      >
+        <span class="text-lg font-black tracking-tighter text-yellow-400"
+          >GETFITWITHJASWANTH</span
+        >
+        <p class="text-neutral-500 text-xs text-center max-w-sm">
+          Results vary based on effort and consistency. Consult a doctor before
+          starting any intense program.
+        </p>
+        <p class="text-sm text-neutral-600">
+          &copy; 2026 GetFitWithJaswanth. All rights reserved.
+        </p>
+      </div>
     </footer>
 
     <!-- Cart Overlay -->
@@ -429,18 +833,18 @@
           <i data-lucide="x" class="w-6 h-6"></i>
         </button>
       </div>
-
       <div
         id="cart-items-list"
         class="flex-1 overflow-y-auto p-6 space-y-4"
       ></div>
-
       <div class="p-6 border-t border-neutral-800 bg-neutral-900/50">
-        <div class="flex justify-between mb-2">
+        <div class="flex justify-between mb-4">
           <span class="text-neutral-400">Subtotal</span>
           <span id="cart-subtotal" class="font-bold">₹0</span>
         </div>
-        <a href="checkout.html" class="btn-primary block w-full"
+        <a
+          href="checkout.html"
+          class="btn-primary block w-full rounded-lg py-3 text-sm font-bold"
           >Proceed to Checkout</a
         >
       </div>
